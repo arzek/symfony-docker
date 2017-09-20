@@ -6,9 +6,9 @@ services:
     container_name: sf.app
     build: .docker/php
     volumes:
-      - .:/app
-      - ./var/logs:/app/var/logs
-      - ./var/cache.:/app/var/cache
+      - ./symfony:/app
+      - ./symfony/var/logs:/app/var/logs
+      - ./symfony/var/cache.:/app/var/cache
 
   nginx:
     container_name: sf.nginx
@@ -16,4 +16,4 @@ services:
     volumes_from:
       - app
     ports:
-      - "81:80"
+      - "80:80"
