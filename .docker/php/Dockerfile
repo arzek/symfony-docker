@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 
-LABEL maintainer "Daniel Ribeiro <drgomesp@gmail.com>"
+LABEL maintainer "Artem Bondarchuk <arzek2015@gmail.com>"
 
 RUN apt-get update \
 	&& apt-get install -y \
@@ -48,6 +48,13 @@ RUN docker-php-ext-enable xdebug \
     && echo "xdebug.remote_connect_back = 1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey = \"PHPSTORM\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_port = 9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# install instaler-symfony
+
+RUN mkdir -p /usr/local/bin
+RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+RUN chmod a+x /usr/local/bin/symfony
+
 
 RUN usermod -u 1000 www-data
 
